@@ -33,12 +33,16 @@ main{
    
     color: white; /* Text color */
  
-    background-color: #978273; /* Remove background color */
+    background-color: #978273; 
      
     border: 2px solid white; /* Border thickness, line style, and color */
      
     border-radius: 7px; /* Adds curve to border corners */
      
     padding: 5px;
+    
+}
+
+.add-product-form{
     
 }

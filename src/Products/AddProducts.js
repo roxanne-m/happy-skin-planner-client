@@ -9,10 +9,10 @@ class AddProduct extends React.Component {
     super(props);
     this.state = {
       productName: '',
-      morningOrEvening: '',
+      morningOrEvening: true,
       dayOfWeek: {
         monday: false,
-        tuesday: true,
+        tuesday: false,
         wednesday: false,
         thursday: false,
         friday: false,
@@ -22,42 +22,50 @@ class AddProduct extends React.Component {
       error: null,
     };
   }
-  
+
   static contextType = ApiContext;
 
-  /* 
-        req.body = {
-            product_name: text,
-            morning: true,
-        days: ['monday', 'tuesday']
-        }
-        
-        form for checkbox
-        loop through checkbox values
-        for each checked checkbox add name of that day to the array
-        (target value into array)
-        
-        */
+  // This function handles changes in state for text input
+  handleChange = (e) => this.setState({ [e.target.name]: e.target.value });
 
-  // This function handles changes in state
-//   handleChange = (e) => this.setState({ [e.target.name]: e.target.value });
-        handleChange = (e) => {
-            const value1 = e.target.value;
-            const checked = e.target.checked;
-            this.setState((prevState) => ({dayOfWeek:{...prevState.dayOfWeek, value1: checked } }));
-            // this.setState((prevState) => ({ jasper: { ...prevState.jasper, name: 'something', }, }));
-        }
+  // This function handles changes in state for morning or evening
+  handleMorningChange = (event) => {
+    const mornOrEven = event.target.value;
+    // console.log(mornOrEven)
+    this.setState({
+      morningOrEvening: mornOrEven === 'morning',
+    });
+  };
+
+  // This function handles changes in state for checkbox input
+  handleDayOfWeekChange = (event) => {
+    const dayOfWeek = event.target.value;
+    this.setState({
+      dayOfWeek: {
+        ...this.state.dayOfWeek,
+        [dayOfWeek]: !this.state.dayOfWeek[dayOfWeek],
+      },
+    });
+  };
 
   // On this submit button, perform post request
   handleSubmit(e) {
     e.preventDefault();
-    const pName = e.target.productName.value;
-    // const pName = this.state.productName;
-    const mOrE = e.target.morningOrEvening.value;
-    // const mOrE = this.state.morningOrEvening;
-    const dOfWeek = e.target.dayOfWeek.value; //needs to be changed to handle a checkbox
+    const pName = this.state.productName;
+    const mOrE = this.state.morningOrEvening;
+    const dOfWeek = this.state.dayOfWeek; //needs to be changed to handle a checkbox
 
-    if (noBoxesChecked) {
+    let filteredDays = {};
+    // iterating over keys of an object (let key in dOfWeek)
+    for (let key in dOfWeek) {
+      //if value of day is true,then add day to filteredDays. If false, not added to object
+      if (dOfWeek[key]) {
+        filteredDays[key] = dOfWeek[key];
+      }
+    }
+
+    // console.log(filteredDays)      test checks to see if only days set to true are stored
+    if (noBoxesChecked()) {
       alert('Please, check at least one checkbox!');
     } else {
       // Perform fetch request and error handling
@@ -65,8 +73,8 @@ class AddProduct extends React.Component {
         method: 'POST',
         body: JSON.stringify({
           product_name: pName,
-          morning: mOrE,
-          days: dOfWeek,
+          morning: mOrE === 'morning',
+          days: filteredDays,
         }),
         headers: {
           'Content-Type': 'application/json',
@@ -90,7 +98,7 @@ class AddProduct extends React.Component {
   }
 
   render() {
-      const dayOfWeek = this.state.dayOfWeek;
+    const dayOfWeek = this.state.dayOfWeek;
     return (
       <div>
         <form
@@ -112,8 +120,9 @@ class AddProduct extends React.Component {
               id='morning'
               type='radio'
               name='morningOrEvening'
-              value={this.state.morningOrEvening}
-              onChange={this.handleChange}
+              value='morning'
+              checked={this.state.morningOrEvening.morning}
+              onChange={this.handleMorningChange}
               defaultChecked
             />
             <label htmlFor='morning'>Morning</label>
@@ -122,23 +131,23 @@ class AddProduct extends React.Component {
               id='evening'
               type='radio'
               name='morningOrEvening'
-              value={this.state.morningOrEvening}
-              onChange={this.handleChange}
+              value='evening'
+              checked={this.state.morningOrEvening.evening}
+              onChange={this.handleMorningChange}
             />
             <label htmlFor='evening'>Evening</label>
             <br />
-           
 
-            <div><p>Check Days To Use Product</p>
             <div>
-            
+              <p>Check Days To Use Product</p>
+              <div>
                 <input
                   type='checkbox'
                   id='monday'
                   name='dayOfWeek'
                   value='monday'
-                  checked = {dayOfWeek['monday'] ? 'checked' : ''}
-                  onChange={this.handleChange}
+                  checked={this.state.dayOfWeek.monday}
+                  onChange={this.handleDayOfWeekChange}
                 />
                 <label htmlFor='monday'>Monday</label>
               </div>
@@ -147,9 +156,9 @@ class AddProduct extends React.Component {
                   type='checkbox'
                   id='tuesday'
                   name='dayOfWeek'
-                  value="tuesday"
-                  checked = {dayOfWeek['tuesday'] ? 'checked' : ''}
-                  onChange={this.handleChange}
+                  value='tuesday'
+                  checked={this.state.dayOfWeek.tuesday}
+                  onChange={this.handleDayOfWeekChange}
                 />
                 <label htmlFor='tuesday'>Tuesday</label>
               </div>
@@ -159,8 +168,8 @@ class AddProduct extends React.Component {
                   id='wednesday'
                   name='dayOfWeek'
                   value='wednesday'
-                  checked = {dayOfWeek['wednesday'] ? 'checked' : ''}
-                  onChange={this.handleChange}
+                  checked={this.state.dayOfWeek.wednesday}
+                  onChange={this.handleDayOfWeekChange}
                 />
                 <label htmlFor='wednesday'>Wednesday</label>
               </div>
@@ -170,8 +179,8 @@ class AddProduct extends React.Component {
                   id='thursday'
                   name='dayOfWeek'
                   value='thursday'
-                  checked = {dayOfWeek['thursday'] ? 'checked' : ''}
-                  onChange={this.handleChange}
+                  checked={this.state.dayOfWeek.thursday}
+                  onChange={this.handleDayOfWeekChange}
                 />
                 <label htmlFor='thursday'>Thursday</label>
               </div>
@@ -181,8 +190,8 @@ class AddProduct extends React.Component {
                   id='friday'
                   name='dayOfWeek'
                   value='friday'
-                  checked = {dayOfWeek['friday'] ? 'checked' : ''}
-                  onChange={this.handleChange}
+                  checked={this.state.dayOfWeek.friday}
+                  onChange={this.handleDayOfWeekChange}
                 />
                 <label htmlFor='friday'>Friday</label>
               </div>
@@ -192,8 +201,8 @@ class AddProduct extends React.Component {
                   id='saturday'
                   name='dayOfWeek'
                   value='saturday'
-                  checked = {dayOfWeek['saturday'] ? 'checked' : ''}
-                  onChange={this.handleChange}
+                  checked={this.state.dayOfWeek.saturday}
+                  onChange={this.handleDayOfWeekChange}
                 />
                 <label htmlFor='saturday'>Saturday</label>
               </div>
@@ -203,8 +212,8 @@ class AddProduct extends React.Component {
                   id='sunday'
                   name='dayOfWeek'
                   value='sunday'
-                  checked = {dayOfWeek['sunday'] ? 'checked' : ''}
-                  onChange={this.handleChange}
+                  checked={this.state.dayOfWeek.sunday}
+                  onChange={this.handleDayOfWeekChange}
                 />
                 <label htmlFor='sunday'>Sunday</label>
               </div>

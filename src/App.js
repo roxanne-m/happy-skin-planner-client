@@ -1,6 +1,7 @@
 import React from 'react';
 import { Route, Link } from 'react-router-dom';
 import config from './config';
+import LandingPage from './LandingPage/LandingPage';
 import About from './About/About';
 import Products from './Products/Products';
 import AddProduct from './Products/AddProducts';
@@ -67,22 +68,6 @@ class App extends React.Component {
   };
 
 
-/* Landing page that displays when open app or click app title */
-renderLandingPage(){
-  return(
-    <main>
-      <h2>Welcome!</h2>
-      <p>I am delighted to have you and that you have decided to take charge of your 
-        one and only skin. With Happy Skin Planner, you have the ability to customize
-        your very own planner in order to organize your skin regime. To begin, you may 
-        explore the navigation tabs and review the pages: About, My Weekly Planner, and 
-        My Products. 
-      </p>
-      <p>Happy Skin Planning!</p>
-    </main>
-  )
-}
-
   render() {
     /* Set global prop variable */
     const value = {
@@ -96,7 +81,7 @@ renderLandingPage(){
       <ApiContext.Provider value={value}>
         <header className='header-style'>
           <h1>
-            <Link to='/' >Happy Skin Planner</Link>
+            <Link to='/'>Happy Skin Planner</Link>
           </h1>
           <nav>
           <ul className='navigation-style'>
@@ -106,7 +91,9 @@ renderLandingPage(){
         </ul>
           </nav>
         </header>
+        
         {/* {this.renderLandingPage()}; */}
+        <Route exact path='/' component={LandingPage} />
           <Route path='/about' component={About} />
           <Route path='/products' component={Products} />
           <Route path='/weekly-planner' component={WeeklySchedule} />
