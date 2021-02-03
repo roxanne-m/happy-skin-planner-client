@@ -1,4 +1,4 @@
-import App from './App';
+import AddProduct from './AddProducts';
 import React from 'react';
 import ReactDOM from 'react-dom';
 
@@ -7,7 +7,7 @@ it('renders without crashing', () => {
   const div = document.createElement('div');
 
   // render component, if something is wrong, it will fail here
-  ReactDOM.render(<App />, div);
+  ReactDOM.render(<AddProduct />, div);
 
   //clean up code
   ReactDOM.unmountComponentAtNode(div);

@@ -2,17 +2,16 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import ApiContext from '../ApiContext';
 import './Products.css';
+import ErrorBoundaries from '../ErrorBoundaries/ErrorBoundaries';
+import PropTypes from 'prop-types';
 
 class Products extends React.Component {
-  static defaultProps = {
-    // onDeleteProduct: () => {},
-  };
 
   static contextType = ApiContext;
 
-  // handleDeleteProduct = (productId) => {
-  //   this.props.history.push('products');
-  // };
+  handleDeleteProduct = (productId) => {
+    this.context.handleDeleteProduct(productId);
+  };
 
   getProductName = () => {
     let currentProduct = this.context.products.find(
@@ -27,6 +26,8 @@ class Products extends React.Component {
     let products = this.context.products.map((product, i) => (
       <li key={i}>
         {product.product_name}
+        <br/>
+        <button className='delete-product-button' onClick={() => this.handleDeleteProduct(product.product_id)}>Delete</button>
       </li>
     ));
     let productsList = <ol className='ol-product-list'>{products}</ol>;
@@ -34,10 +35,9 @@ class Products extends React.Component {
   };
 
   render() {
-    const { products = [] } = this.context;
-    // console.log(products, 'This is in product.js');
     return (
-      <main>
+      <ErrorBoundaries>
+     
           <h2>Happy Skin Products</h2>
           <Link to='/add-product'
           className='add-product-button'>Add Product
@@ -46,9 +46,14 @@ class Products extends React.Component {
         <section className='favorites-style'>
           {this.renderProductsList()}
         </section>
-      </main>
+     
+      </ErrorBoundaries>
     );
   }
+}
+
+Products.propTypes ={
+value: PropTypes.number
 }
 
 export default Products;

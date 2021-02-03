@@ -5,6 +5,7 @@ const ApiContext = React.createContext({
     products: [],
     handleDeleteProduct: () => {},
     addProduct: () => {},
+    getAndSetProducts: () => {},
 })
 
 export default ApiContext;

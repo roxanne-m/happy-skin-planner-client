@@ -1,4 +1,4 @@
-import App from './App';
+import About from './About';
 import React from 'react';
 import ReactDOM from 'react-dom';
 
@@ -7,7 +7,7 @@ it('renders without crashing', () => {
   const div = document.createElement('div');
 
   // render component, if something is wrong, it will fail here
-  ReactDOM.render(<App />, div);
+  ReactDOM.render(<About />, div);
 
   //clean up code
   ReactDOM.unmountComponentAtNode(div);

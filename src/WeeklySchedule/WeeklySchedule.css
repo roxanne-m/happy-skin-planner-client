@@ -1,22 +1,16 @@
-main{
-    background: rgb(41, 81, 133, 0.95);
-    margin: 30px;
-    padding: 30px;
-    color: black;
-    border: 2px solid white;
+
+.strike-through{
+    text-decoration: line-through;
 }
 
-
-.table-style{
+ .table-style{ 
     background-color: white;
-    line-height: 1.5;
-    margin: 20px;
-   
-}
-
+ } 
 table{
     border-collapse: collapse;
-      border: 2px solid black;
+    border: 2px solid black;
+    margin: 30px;
+    padding: 20px;
 }
 
 th, td{
@@ -24,16 +18,65 @@ th, td{
    padding: 10px 20px;
 }
 
+th{
+    font-size: 20px;
+    background-color: #fcf5c7;
+}
 td{
     text-align: center;
 }
 
-.week-day-style{
-    font-weight: bold;
-   text-decoration: underline;
-   
+
+
+tr{
+    vertical-align: text-top;
+    
+}
+ 
+
+.morning-style{
+    text-decoration: underline;
+    background-color: #ffb4a2;
+}
+.evening-style{
+    text-decoration: underline;
+    background-color: #ABC8C0;
 }
 
-.morning-style, .evening-style{
-    text-decoration: underline;
+.hide-day{
+    visibility: hidden;
 }
+
+.complete-button-style{
+    color: white; /* Text color */
+ 
+    background-color: #978273; 
+     
+    border: 2px solid white; /* Border thickness, line style, and color */
+     
+    border-radius: 7px; /* Adds curve to border corners */
+     
+    padding: 5px;
+}
+
+/* Mobile styling */
+@media all and (max-width: 800px) {
+    body {
+      display: flex;
+      flex-direction: column;
+      
+    }
+table{
+    display: flex;
+    flex-direction: column;
+}
+td, th{
+    display: flex;
+    flex-direction: column;
+}
+.hide-day{
+    visibility: visible;
+}
+  
+  }
+  

@@ -8,6 +8,7 @@ import AddProduct from './Products/AddProducts';
 import WeeklySchedule from './WeeklySchedule/WeeklySchedule';
 import ApiContext from './ApiContext';
 import './App.css';
+import ErrorBoundaries from './ErrorBoundaries/ErrorBoundaries';
 
 class App extends React.Component {
   constructor() {
@@ -18,6 +19,10 @@ class App extends React.Component {
   }
 
   componentDidMount = () => {
+    this.getAndSetProducts();
+  };
+
+  getAndSetProducts = () => {
     Promise.all([fetch(`${config.url}/products`)])
       .then(([productsResponse]) => {
         if (!productsResponse.ok)
@@ -27,7 +32,6 @@ class App extends React.Component {
       })
 
       .then(([products]) => {
-        // console.log(products, 'This is from app.js fetch');
         this.setState({ products });
       })
 
@@ -51,11 +55,7 @@ class App extends React.Component {
         if (!response.ok) {
           throw new Error(response.status);
         } else {
-          this.setState({
-            products: this.state.products.filter(
-              (product) => product.id !== productId
-            ),
-          });
+          this.getAndSetProducts();
         }
       })
       .catch((error) => console.log(error));
@@ -67,38 +67,46 @@ class App extends React.Component {
     this.setState({ products: addProduct });
   };
 
-
   render() {
     /* Set global prop variable */
     const value = {
       products: this.state.products,
       handleDeleteProduct: this.handleDeleteProduct,
       addProduct: this.addProduct,
+      getAndSetProducts: this.getAndSetProducts,
     };
-  
 
     return (
       <ApiContext.Provider value={value}>
-        <header className='header-style'>
-          <h1>
-            <Link to='/'>Happy Skin Planner</Link>
-          </h1>
-          <nav>
-          <ul className='navigation-style'>
-          <li><a href="about">About</a></li>
-          <li><a href="weekly-planner">My Weekly Planner</a></li>
-          <li><a href="products">My Products</a></li>
-        </ul>
-          </nav>
-        </header>
-        
-        {/* {this.renderLandingPage()}; */}
-        <Route exact path='/' component={LandingPage} />
-          <Route path='/about' component={About} />
-          <Route path='/products' component={Products} />
-          <Route path='/weekly-planner' component={WeeklySchedule} />
-          <Route path='/add-product' component={AddProduct} />
-        <footer>Roxanne Cantu, Happy Skin Planner 2021</footer>
+        <ErrorBoundaries>
+          <header className='header-style'>
+            <h1>
+              <Link to='/'>Happy Skin Planner</Link>
+            </h1>
+            <nav>
+              <ul className='navigation-style'>
+                <li>
+                  <a href='about'>About</a>
+                </li>
+                <li>
+                  <a href='weekly-planner'>My Weekly Planner</a>
+                </li>
+                <li>
+                  <a href='products'>My Products</a>
+                </li>
+              </ul>
+            </nav>
+          </header>
+
+          <main>
+            <Route exact path='/' component={LandingPage} />
+            <Route path='/about' component={About} />
+            <Route path='/products' component={Products} />
+            <Route path='/weekly-planner' component={WeeklySchedule} />
+            <Route path='/add-product' component={AddProduct} />
+          </main>
+          <footer>Roxanne Cantu, Happy Skin Planner 2021</footer>
+        </ErrorBoundaries>
       </ApiContext.Provider>
     );
   }

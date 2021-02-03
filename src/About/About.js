@@ -1,11 +1,12 @@
 import React from 'react';
-import { NavLink } from 'react-router-dom';
 import './About.css';
+import ErrorBoundaries from '../ErrorBoundaries/ErrorBoundaries';
 
 class About extends React.Component {
   render() {
     return (
-      <main>
+      <ErrorBoundaries>
+   
         <h2>About Happy Skin Planner</h2>
         <fieldset className='about-style'>
           <p>
@@ -24,7 +25,9 @@ class About extends React.Component {
             you to view on the "My Weekly Planner" tab and allows you to check
             them off as you complete your skin regime throughout the day. If you
             no longer wish to use a specific product, you may also remove the
-            product from your planner. Happy Skin Planner is entirely
+            product from your products list located in the "My Products" tab. By
+            removing a product from your products list, you also remove it from
+            your weekly planner as well. Happy Skin Planner is entirely
             customizable for your use in order to provide your skin the love it
             needs to leave it ever so happy!
           </p>
@@ -34,7 +37,8 @@ class About extends React.Component {
             XoXo
           </p>
         </fieldset>
-      </main>
+
+      </ErrorBoundaries>
     );
   }
 }

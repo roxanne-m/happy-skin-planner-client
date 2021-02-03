@@ -1,11 +1,13 @@
 import React from 'react';
 import './LandingPage.css';
+import ErrorBoundaries from '../ErrorBoundaries/ErrorBoundaries';
 
 /* Landing page that displays when open app or click app title */
 class LandingPage extends React.Component {
   render() {
     return (
-      <main>
+      <ErrorBoundaries>
+     
         <h2>Welcome!</h2>
         <section className='landing-page-style'>
         <p>
@@ -17,7 +19,8 @@ class LandingPage extends React.Component {
         </p>
         <p>Happy Skin Planning!</p>
         </section>
-      </main>
+    
+      </ErrorBoundaries>
     );
   }
 }

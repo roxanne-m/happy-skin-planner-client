@@ -1,4 +1,4 @@
-import App from './App';
+import WeeklySchedule from './WeeklySchedule';
 import React from 'react';
 import ReactDOM from 'react-dom';
 
@@ -7,7 +7,7 @@ it('renders without crashing', () => {
   const div = document.createElement('div');
 
   // render component, if something is wrong, it will fail here
-  ReactDOM.render(<App />, div);
+  ReactDOM.render(<WeeklySchedule />, div);
 
   //clean up code
   ReactDOM.unmountComponentAtNode(div);

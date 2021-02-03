@@ -3,6 +3,8 @@ import ApiContext from '../ApiContext';
 import config from '../config';
 import './Products.css';
 import noBoxesChecked from './WeekDayCheckbox';
+import ErrorBoundaries from '../ErrorBoundaries/ErrorBoundaries';
+import PropTypes from 'prop-types';
 
 class AddProduct extends React.Component {
   constructor(props) {
@@ -52,8 +54,7 @@ class AddProduct extends React.Component {
   handleSubmit(e) {
     e.preventDefault();
     const pName = this.state.productName;
-    const mOrE = this.state.morningOrEvening;
-    const dOfWeek = this.state.dayOfWeek; //needs to be changed to handle a checkbox
+    const dOfWeek = this.state.dayOfWeek;
 
     let filteredDays = {};
     // iterating over keys of an object (let key in dOfWeek)
@@ -68,14 +69,14 @@ class AddProduct extends React.Component {
     if (noBoxesChecked()) {
       alert('Please, check at least one checkbox!');
     } else {
+      const newProduct = {
+        product_name: pName,
+        days: filteredDays,
+      };
       // Perform fetch request and error handling
       fetch(`${config.url}/products`, {
         method: 'POST',
-        body: JSON.stringify({
-          product_name: pName,
-          morning: mOrE === 'morning',
-          days: filteredDays,
-        }),
+        body: JSON.stringify(newProduct),
         headers: {
           'Content-Type': 'application/json',
         },
@@ -98,15 +99,14 @@ class AddProduct extends React.Component {
   }
 
   render() {
-    const dayOfWeek = this.state.dayOfWeek;
     return (
-      <div>
-        <form
-          className='add-product-form'
-          onSubmit={(e) => this.handleSubmit(e)}
-        >
-          <h2>Add New Skin Product</h2>
-          <fieldset className='add-product-style'>
+      <ErrorBoundaries>
+
+        <h2>Add New Skin Product</h2>
+        <fieldset className='add-product-form'>
+          <form
+            onSubmit={(e) => this.handleSubmit(e)}
+          >
             <label htmlFor='name'>Product Name: </label>
             <input
               type='text'
@@ -220,16 +220,22 @@ class AddProduct extends React.Component {
             </div>
 
             <br />
-            <div className='form-submit-button'>
-              <button type='submit'>Submit</button>
+            <div>
+              <button className='form-submit-button' type='submit'>Submit</button>
             </div>
-
-            <button onClick={() => this.props.history.goBack()}>Cancel</button>
-          </fieldset>
-        </form>
-      </div>
+          </form>
+          
+        </fieldset>
+        <br/>
+        <button className='cancel-button-style' onClick={() => this.props.history.goBack()}>Cancel</button>
+    
+      </ErrorBoundaries>
     );
   }
+}
+
+AddProduct.propTypes={
+  history: PropTypes.object.isRequired,
 }
 
 export default AddProduct;

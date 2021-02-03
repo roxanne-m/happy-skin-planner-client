@@ -1,17 +1,11 @@
-.favorites-style{
+.favorites-style, .add-product-form{
     line-height: 1.5;
     background-color: rgb(226, 235, 241, 0.75);
     left: 40px;
     right: 40px;
 }
 
-.add-product-form{
-    background-color:  rgb(41, 81, 133);
-    margin: 30px;
-    padding: 30px;
-    color: white;
-    /* border: 2px solid white; */
-}
+
 .ol-product-list{
     margin: 20px;
 }
@@ -21,15 +15,9 @@ h2{
     margin-bottom: 40px;
 }
 
-main{
-    background: rgb(41, 81, 133, 0.95);
-    margin: 30px;
-    padding: 30px;
-    color: black;
-    border: 2px solid white;
-}
 
-.add-product-button{
+
+.add-product-button, .delete-product-button, .cancel-button-style, .form-submit-button{
    
     color: white; /* Text color */
  
@@ -43,6 +31,3 @@ main{
     
 }
 
-.add-product-form{
-    
-}
