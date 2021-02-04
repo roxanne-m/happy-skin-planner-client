@@ -1,6 +1,12 @@
-# Getting Started with Create React App
+# Happy Skin Planner
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+## Application Summary
+The user can create a customized weekly skin planner to organize their daily skin regime. Users can add the product name, designate whether to be scheduled for 
+morning or evening use, and mark the days for product use. When submitted, a weekly schedulle is set up with added products and use may mark them as completed or reset
+the button to mark as incomplete. User may also delete specific products that would simultaneously delete the product from their weekly schedule. 
+
+Link to front-end client built using React.
+
 
 ## Available Scripts
 
@@ -39,32 +45,39 @@ Instead, it will copy all the configuration files and the transitive dependencie
 
 You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
 
-## Learn More
+## Technology used to create Happy Skin Planner
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+### Backend
+• Node & Express
+  ⁃ RESTful API
+• Testing
+  ⁃ Supertest
+  ⁃ Mocha & Chai
+• Database
+  ⁃ PostgreSQL
+  ⁃ Knex
+• Production
+  ⁃ Deployed via Heroku
+ 
+### Frontend
+• React
+  ⁃ Create React
+  ⁃ React Router
+  ⁃ React Context
+• Testing
+  ⁃ Jest (smoke tests)
+• Production
+  ⁃ Deployed via Vercel
+  
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+## Documentation of API
 
-### Code Splitting
+### Happy Skin Planner Endpoints
+#### Products Endpoint
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
 
-### Analyzing the Bundle Size
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
+#### Weekly Planner Endpoint
 
-### Making a Progressive Web App
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
 
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
