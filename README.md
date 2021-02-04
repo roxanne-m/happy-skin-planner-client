@@ -1,6 +1,13 @@
-# Getting Started with Create React App
+# Happy Skin Planner
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+## Application Summary
+The user can create a customized weekly skin planner to organize their daily skin regime. Users can add the product name, designate whether to be scheduled for 
+morning or evening use, and mark the days for product use. When submitted, a weekly schedulle is set up with added products and use may mark them as completed or reset
+the button to mark as incomplete. User may also delete specific products that would simultaneously delete the product from their weekly schedule. 
+
+Link to front-end client built using React.
+
+![hsp](https://user-images.githubusercontent.com/70825798/106854351-015a5680-6670-11eb-817c-812d49361386.JPG)
 
 ## Available Scripts
 
@@ -39,32 +46,57 @@ Instead, it will copy all the configuration files and the transitive dependencie
 
 You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
 
-## Learn More
+## Technology used to create Happy Skin Planner
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+### Backend
+• Node & Express <br/>
+  ⁃ RESTful API <br/><br/>
+• Testing <br/>
+  ⁃ Supertest <br/>
+  ⁃ Mocha & Chai <br/><br/>
+• Database <br/>
+  ⁃ PostgreSQL <br/>
+  ⁃ Knex <br/><br/>
+• Production <br/>
+  ⁃ Deployed via Heroku <br/>
+ 
+### Frontend
+• React <br/>
+  ⁃ Create React <br/>
+  ⁃ React Router <br/>
+  ⁃ React Context <br/><br/>
+• Testing <br/>
+  ⁃ Jest (smoke tests) <br/><br/>
+• Production <br/>
+  ⁃ Deployed via Vercel <br/>
+  
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+## Documentation of API
 
-### Code Splitting
+### Happy Skin Planner Endpoints
+#### Products Endpoint
+`GET  /api/products` <br/>
+Provides full list of skin care products saved. <br/>
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
 
-### Analyzing the Bundle Size
+`POST  /api/products` <br/>
+Creates new product with designated time of day (morning/evening) and days of week use. <br/>
+| Key | Value |
+| ------------- | ------------- |
+| product_name  | Text, required |
+| morning  | Boolean, default true  |
+| days  | Boolean  |
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
 
-### Making a Progressive Web App
+`DELETE  /api/products/:product_id` <br/>
+Deletes a specific product that matches endpoint id. <br/>
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
 
-### Advanced Configuration
+#### Weekly Planner Endpoint
+`PATCH /api/weekly-planner/:week_id` <br/>
+Updates the completed status (true/false) of the product matching the endpoint id. <br/>
+| Key  | Value |
+| ------------- | ------------- |
+| completed  | Boolean, default false  |
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
 
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
