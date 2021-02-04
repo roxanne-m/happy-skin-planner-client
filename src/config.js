@@ -1,6 +1,6 @@
 
 const baseUrl = {
-    url: 'http://localhost:8000/api'
+    url: 'https://vast-shelf-16485.herokuapp.com/api'
 }
 
 export default baseUrl;
