@@ -75,7 +75,11 @@ You don’t have to ever use `eject`. The curated feature set is suitable for sm
 ### Happy Skin Planner Endpoints
 #### Products Endpoint
 `GET  /api/products` <br/>
-Provides full list of skin care products saved.
+Provides full list of skin care products saved. <br/>
+| First Header  | Second Header |
+| ------------- | ------------- |
+| Content Cell  | Content Cell  |
+| Content Cell  | Content Cell  |
 
 `POST  /api/products` <br/>
 Creates new product with designated time of day (morning/evening) and days of week use.
