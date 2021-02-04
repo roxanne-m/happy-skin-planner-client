@@ -48,7 +48,7 @@ You don’t have to ever use `eject`. The curated feature set is suitable for sm
 ## Technology used to create Happy Skin Planner
 
 ### Backend
-• Node & Express
+• Node & Express <br/>
   ⁃ RESTful API
 • Testing
   ⁃ Supertest
