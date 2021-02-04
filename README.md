@@ -74,7 +74,7 @@ You don’t have to ever use `eject`. The curated feature set is suitable for sm
 
 ### Happy Skin Planner Endpoints
 #### Products Endpoint
-
+### `GET  /api/products`
 
 
 #### Weekly Planner Endpoint
