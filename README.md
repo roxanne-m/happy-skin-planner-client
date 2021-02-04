@@ -60,30 +60,30 @@ You don’t have to ever use `eject`. The curated feature set is suitable for sm
   ⁃ Deployed via Heroku <br/>
  
 ### Frontend
-• React
-  ⁃ Create React
-  ⁃ React Router
-  ⁃ React Context
-• Testing
-  ⁃ Jest (smoke tests)
-• Production
-  ⁃ Deployed via Vercel
+• React <br/>
+  ⁃ Create React <br/>
+  ⁃ React Router <br/>
+  ⁃ React Context <br/><br/>
+• Testing <br/>
+  ⁃ Jest (smoke tests) <br/><br/>
+• Production <br/>
+  ⁃ Deployed via Vercel <br/>
   
 
 ## Documentation of API
 
 ### Happy Skin Planner Endpoints
 #### Products Endpoint
-`GET  /api/products`
+`GET  /api/products` <br/>
 Provides full list of skin care products saved.
 
-`POST  /api/products`
+`POST  /api/products` <br/>
 Creates new product with designated time of day (morning/evening) and days of week use.
 
-`DELETE  /api/products/:product_id`
+`DELETE  /api/products/:product_id` <br/>
 Deletes a specific product that matches endpoint id.
 
 #### Weekly Planner Endpoint
-`PATCH /api/weekly-planner/:week_id`
+`PATCH /api/weekly-planner/:week_id` <br/>
 Updates the completed status (true/false) of the product matching the endpoint id. 
 
