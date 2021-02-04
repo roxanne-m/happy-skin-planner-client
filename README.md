@@ -76,18 +76,26 @@ You don’t have to ever use `eject`. The curated feature set is suitable for sm
 #### Products Endpoint
 `GET  /api/products` <br/>
 Provides full list of skin care products saved. <br/>
-| First Header  | Second Header |
-| ------------- | ------------- |
-| Content Cell  | Content Cell  |
-| Content Cell  | Content Cell  |
+
 
 `POST  /api/products` <br/>
-Creates new product with designated time of day (morning/evening) and days of week use.
+Creates new product with designated time of day (morning/evening) and days of week use. <br/>
+| Key | Value |
+| ------------- | ------------- |
+| product_name  | Text, required |
+| morning  | Boolean, default true  |
+| days  | Boolean  |
+
 
 `DELETE  /api/products/:product_id` <br/>
-Deletes a specific product that matches endpoint id.
+Deletes a specific product that matches endpoint id. <br/>
+
 
 #### Weekly Planner Endpoint
 `PATCH /api/weekly-planner/:week_id` <br/>
-Updates the completed status (true/false) of the product matching the endpoint id. 
+Updates the completed status (true/false) of the product matching the endpoint id. <br/>
+| Key  | Value |
+| ------------- | ------------- |
+| completed  | Boolean, default false  |
+
 
