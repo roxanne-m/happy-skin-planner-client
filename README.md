@@ -75,9 +75,15 @@ You don’t have to ever use `eject`. The curated feature set is suitable for sm
 ### Happy Skin Planner Endpoints
 #### Products Endpoint
 `GET  /api/products`
+Provides full list of skin care products saved.
 
+`POST  /api/products`
+Creates new product with designated time of day (morning/evening) and days of week use.
+
+`DELETE  /api/products/:product_id`
+Deletes a specific product that matches endpoint id.
 
 #### Weekly Planner Endpoint
-
-
+`PATCH /api/weekly-planner/:week_id`
+Updates the completed status (true/false) of the product matching the endpoint id. 
 
