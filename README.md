@@ -49,15 +49,15 @@ You don’t have to ever use `eject`. The curated feature set is suitable for sm
 
 ### Backend
 • Node & Express <br/>
-  ⁃ RESTful API
-• Testing
-  ⁃ Supertest
-  ⁃ Mocha & Chai
-• Database
-  ⁃ PostgreSQL
-  ⁃ Knex
-• Production
-  ⁃ Deployed via Heroku
+  ⁃ RESTful API <br/><br/>
+• Testing <br/>
+  ⁃ Supertest <br/>
+  ⁃ Mocha & Chai <br/><br/>
+• Database <br/>
+  ⁃ PostgreSQL <br/>
+  ⁃ Knex <br/><br/>
+• Production <br/>
+  ⁃ Deployed via Heroku <br/>
  
 ### Frontend
 • React
